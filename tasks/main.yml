@@ -1,10 +1,18 @@
 ---
-- name: 'Install Python PIP'
+- name: 'Install Python PIP (Ubuntu 18.04)'
   tags: 'aws-cli'
   become: 'yes'
   apt: >
     pkg=python-pip
     state=latest
+  when: ansible_distribution_version == '18.04'
+- name: 'Install Python PIP (Ubuntu 20.04)'
+  tags: 'aws-cli'
+  become: 'yes'
+  apt: >
+    pkg=python3-pip
+    state=latest
+  when: ansible_distribution_version == '20.04'
 
 - name: 'Install AWS CLI'
   tags: 'aws-cli'
